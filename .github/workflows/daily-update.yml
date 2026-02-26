@@ -1,4 +1,4 @@
-name: Daily Repository Update
+name: Daily Repository Update - 24f3000934@ds.study.iitm.ac.in
 
 permissions:
   contents: write
@@ -13,21 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository by 24f3000934@ds.study.iitm.ac.in
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Step by 24f3000934@ds.study.iitm.ac.in
-        run: echo "Workflow triggered by 24f3000934@ds.study.iitm.ac.in"
+      - run: echo "Last updated on $(date)" >> daily-log.txt
 
-      - name: Make daily change by 24f3000934@ds.study.iitm.ac.in
-        run: |
-          echo "Last updated on $(date) by 24f3000934@ds.study.iitm.ac.in" >> daily-log.txt
-
-      - name: Commit and push
-        run: |
+      - run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add daily-log.txt
-          git commit -m "Automated daily update by 24f3000934@ds.study.iitm.ac.in" || echo "No changes by 24f3000934@ds.study.iitm.ac.in"
+          git commit -m "Automated daily update" || exit 0
           git pull --rebase
           git push
